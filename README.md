@@ -7,7 +7,7 @@ on top of the same `Game` API.
 ## Setup
 
 ```bash
-uv sync --all-groups --extra llm
+uv sync --all-groups --extra llm --extra jev
 ```
 
 ## Play in tmux
@@ -45,6 +45,20 @@ from ai_plays_2048 import Direction, Game
 game = Game(seed=42)
 result = game.move(Direction.LEFT)
 ```
+
+## Run the Jev typed-decision player
+
+Copy `.env.example` to `.env`, add `TYPESAFE_API_KEY`, then run:
+
+```bash
+uv run --extra jev ai-plays-2048 jev --seed 42
+```
+
+Jev receives the rendered board and the engine-supplied legal move list each
+turn. Its Pydantic return model only permits the four directions; the adapter
+also refuses a direction that is not legal on the current board. This gives us
+a short, inspectable type-safe policy loop to compare with the generative LLM
+player.
 
 ## Verify
 
