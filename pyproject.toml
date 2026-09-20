@@ -1,0 +1,20 @@
+[project]
+name = "ai-plays-2048"
+version = "0.1.0"
+description = "A shared 2048 engine and a playground for competing AI players."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+llm = ["langchain>=1.0"]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+ai-plays-2048 = "ai_plays_2048:main"
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
